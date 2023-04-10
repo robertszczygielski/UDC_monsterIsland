@@ -1,20 +1,19 @@
 package org.monster.monsterisland.service;
 
-import org.monster.monsterisland.configuration.MonsterConfiguration;
 import org.monster.monsterisland.dto.Monster;
-
-import java.util.List;
 
 public class GameService {
 
+    private MonsterService monsterService = new MonsterService();
+    private MenuService menuService = new MenuService();
+
+    private Monster playerMonster;
+
     public boolean play() {
-        MonsterConfiguration monsterConfiguration = new MonsterConfiguration();
-        MenuService menuService = new MenuService();
-        List<Monster> monsterList = monsterConfiguration.getAllMonster();
-
-        monsterList.forEach(monster -> System.out.println(monster));
-
+        this.playerMonster = monsterService.pickupMonster();
         String playerChoice = menuService.showMenu();
+
+        System.out.println("Your choose: " + this.playerMonster);
 
         if (playerChoice.equals("X")) return false;
 

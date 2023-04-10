@@ -1,5 +1,6 @@
 package org.monster.monsterisland.dto;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Monster {
@@ -17,5 +18,30 @@ public class Monster {
         this.healthPoints = 10;
         this.victoryPoints = 0;
         this.energy = 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Monster monster = (Monster) o;
+        return Objects.equals(id, monster.id) && Objects.equals(name, monster.name) &&
+                Objects.equals(healthPoints, monster.healthPoints) &&
+                Objects.equals(victoryPoints, monster.victoryPoints) &&
+                Objects.equals(energy, monster.energy);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, healthPoints, victoryPoints, energy);
+    }
+
+    @Override
+    public String toString() {
+        return "Monster: " +
+                ", name='" + name + '\'' +
+                ", healthPoints=" + healthPoints +
+                ", victoryPoints=" + victoryPoints +
+                ", energy=" + energy;
     }
 }
